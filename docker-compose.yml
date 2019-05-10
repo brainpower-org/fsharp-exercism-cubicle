@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  fsharc-exercism-cubicle:
+    build: .
+    image: brainpower/fsharp-exercism-cubicle
+    volumes:
+      - .:/repo
+      - $SSH_AUTH_SOCK:/ssh-agent
+    working_dir: /repo
+    env:
+      SSH_AUTH_SOCK: /ssh-agent
+    ports:
+      - '8443:8443'
+    command: code-server --allow-http --no-auth
